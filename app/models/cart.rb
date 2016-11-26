@@ -3,7 +3,11 @@ class Cart < ActiveRecord::Base
   has_many :items, through: :line_items
 
   def total
-    items.sum(:price)
+    total = line_items.collect do |line_item|
+      item = Item.find(line_item.item_id)
+      (item.price * line_item.quantity)
+    end
+    total.reduce(0.0, :+)
   end
 
   def add_item(new_item)

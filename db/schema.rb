@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20161126164223) do
 
   create_table "carts", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "user_current_id"
+    t.string  "status"
   end
 
   add_index "carts", ["user_id"], name: "index_carts_on_user_id"
